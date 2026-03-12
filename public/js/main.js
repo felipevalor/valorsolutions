@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initContactForm();
     initNavScroll();
+    initBadges();
 });
 
 /**
@@ -96,8 +97,8 @@ class ScrambleText {
         for (let i = 0; i < length; i++) {
             const from = oldText[i] || '';
             const to = text[i] || '';
-            const start = Math.floor(Math.random() * 40);
-            const end = start + Math.floor(Math.random() * 40);
+            const start = Math.floor(Math.random() * 120);
+            const end = start + Math.floor(Math.random() * 80);
             this.queue.push({ from, to, start, end });
         }
         cancelAnimationFrame(this.frameRequest);
@@ -115,7 +116,7 @@ class ScrambleText {
                 complete++;
                 output += to;
             } else if (this.frame >= start) {
-                if (!char || Math.random() < 0.28) {
+                if (!char || Math.random() < 0.12) {
                     char = this.chars[Math.floor(Math.random() * this.chars.length)];
                     this.queue[i].char = char;
                 }
@@ -149,7 +150,7 @@ function initScrambleText() {
     
     const next = () => {
         fx.scramble(phrases[counter]).then(() => {
-            setTimeout(next, 2500);
+            setTimeout(next, 4500);
         });
         counter = (counter + 1) % phrases.length;
     };
@@ -336,6 +337,18 @@ function initContactForm() {
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerText = originalText;
+        }
+    });
+}
+
+/**
+ * Badges logic
+ */
+function initBadges() {
+    const badges = document.querySelectorAll('.badge');
+    badges.forEach(badge => {
+        if (badge.innerText.toLowerCase().includes('live')) {
+            badge.classList.add('live');
         }
     });
 }
