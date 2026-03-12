@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valor Solutions | Portfolio & Infrastructure</title>
+    <meta name="description" content="Portfolio de Valor Solutions - Especialista en desarrollo web edge, Cloudflare Workers, D1 y Pages.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="custom-cursor">
+        <div class="cursor-point"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <nav id="header-nav">
+        <div class="container">
+            <a href="#" class="logo">Valor Solutions</a>
+            <div class="nav-links">
+                <a href="#servicios">Servicios</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero">
+            <div class="hero-grid"></div>
+            <div class="container reveal">
+                <h1 id="scramble-headline"></h1>
+                <p class="subtitle">Desarrollo web moderno para negocios que quieren crecer.</p>
+                <div class="hero-metrics">
+                    <div class="metric">
+                        <span class="metric-value" data-target="3">0</span>
+                        <span class="metric-label">proyectos entregados</span>
+                    </div>
+                    <div class="metric-separator">|</div>
+                    <div class="metric">
+                        <span class="metric-value" data-target="100" data-suffix="%">0%</span>
+                        <span class="metric-label">infraestructura edge</span>
+                    </div>
+                    <div class="metric-separator">|</div>
+                    <div class="metric">
+                        <span class="metric-value" data-target="24" data-suffix="hs">0hs</span>
+                        <span class="metric-label">tiempo de respuesta</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="btn magnetic">Hablemos</a>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <div class="container">
+                <h2 class="section-title reveal">Qué hago</h2>
+                <div class="grid cols-3">
+                    <div class="card reveal">
+                        <h3>Sitios web para negocios</h3>
+                        <p>Diseño y desarrollo de sitios estáticos modernos, rápidos y optimizados para SEO.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3>Apps fullstack edge</h3>
+                        <p>Aplicaciones completas sobre Cloudflare Workers, D1 y Pages. Sin servidores tradicionales.</p>
+                    </div>
+                    <div class="card reveal">
+                        <h3>Software a medida</h3>
+                        <p>Soluciones específicas para tu problema. Ejemplo: sistema de turnos para profesionales de la salud.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos">
+            <div class="container">
+                <h2 class="section-title reveal">Proyectos</h2>
+                <div class="grid cols-2">
+                    <div class="card reveal">
+                        <div class="card-header">
+                            <h3>Turnos Psico</h3>
+                            <span class="badge">En desarrollo</span>
+                        </div>
+                        <p>Sistema de gestión de turnos para psicólogos. El profesional publica su disponibilidad y el paciente agenda sin coordinación manual.</p>
+                        <div class="stack-badges">
+                            <span>Workers</span>
+                            <span>D1</span>
+                            <span>Pages</span>
+                        </div>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-header">
+                            <h3>Valor Solutions</h3>
+                            <span class="badge">Live</span>
+                        </div>
+                        <p>Este mismo sitio. Portfolio construido sobre Cloudflare Pages con Worker para el formulario de contacto.</p>
+                        <div class="stack-badges">
+                            <span>Pages</span>
+                            <span>Workers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack">
+            <div class="container">
+                <h2 class="section-title reveal">Stack</h2>
+                <div class="stack-list reveal">
+                    <span>Cloudflare Workers</span> · 
+                    <span>Cloudflare Pages</span> · 
+                    <span>D1 (SQLite)</span> · 
+                    <span>HTML / CSS / JS</span> · 
+                    <span>Wrangler CLI</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="container">
+                <h2 class="section-title reveal">Hablemos</h2>
+                <p class="reveal">Contame tu proyecto y te respondo en menos de 24hs.</p>
+                <form id="contact-form" class="reveal">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿En qué puedo ayudarte?"></textarea>
+                    </div>
+                    <button type="submit" class="btn magnetic">Enviar</button>
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Valor Solutions</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
