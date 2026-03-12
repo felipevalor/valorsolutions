@@ -140,9 +140,9 @@ function initScrambleText() {
     if (!el) return;
     
     const phrases = [
-        "Sitios web que convierten.",
-        "Software que resuelve problemas reales.",
-        "Infraestructura edge, sin servidores."
+        "Tu negocio, online en tiempo récord.",
+        "De la idea al producto en semanas, no meses.",
+        "Tecnología que trabaja mientras vos dormís."
     ];
     
     const fx = new ScrambleText(el);
