@@ -452,7 +452,157 @@ footer {
 
 /* Responsive nuevas secciones */
 @media (max-width: 768px) {
+
+    /* Nav — hamburger menu */
+    nav {
+        height: 60px;
+        padding: 0;
+    }
+
+    nav .container {
+        position: relative;
+    }
+
+    nav .logo {
+        font-size: 1rem;
+        z-index: 1001;
+        position: relative;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 1000;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        color: var(--text);
+    }
+
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1001;
+        position: relative;
+        background: none;
+        border: none;
+        padding: 4px;
+    }
+
+    .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text);
+        transition: var(--transition-base);
+    }
+
+    .nav-toggle.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-toggle.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Hero */
+    #hero {
+        height: auto;
+        min-height: 100svh;
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+
+    #hero h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+        margin-bottom: 1.25rem;
+    }
+
+    #hero .subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Métricas en grid 3 columnas */
+    .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .metric-separator { display: none; }
+
+    .metric-value { font-size: 1.25rem; }
+    .metric-label { font-size: 0.65rem; }
+
+    /* Botón full width */
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    /* Secciones */
+    section { padding: 70px 0; }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Grids */
+    .cols-2, .cols-3 { grid-template-columns: 1fr; }
+
+    /* Cards */
+    .card { padding: 1.75rem; }
+
+    /* Proceso — 1 columna */
+    .process-steps { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .step {
+        border-left: 2px solid var(--border);
+        padding-left: 1.25rem;
+    }
+
+    /* About */
     .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .about-stats { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
-    .process-steps { grid-template-columns: 1fr 1fr; }
+    .about-stats {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--border);
+        padding-top: 2rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .stat-item { flex: 1; min-width: 120px; }
+
+    /* Stack */
+    .stack-list { font-size: 1rem; }
+
+    /* Form */
+    #contact-form { margin-top: 1.5rem; }
 }
+
+/* Ocultar toggle en desktop */
+.nav-toggle { display: none; }

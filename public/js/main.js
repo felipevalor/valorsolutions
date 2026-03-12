@@ -12,26 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initNavScroll();
     initBadges();
+    initMobileMenu();
 });
 
 /**
  * Custom Cursor
  */
 function initCustomCursor() {
+    if (window.matchMedia("(hover: none)").matches ||
+        window.matchMedia("(pointer: coarse)").matches) {
+        document.getElementById('custom-cursor').style.display = 'none';
+        return;
+    }
+
     const cursor = document.getElementById('custom-cursor');
     const point = cursor.querySelector('.cursor-point');
     const ring = cursor.querySelector('.cursor-ring');
-    
+
     let mouseX = 0, mouseY = 0;
     let ringX = 0, ringY = 0;
-    
+
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
+
         point.style.left = `${mouseX}px`;
         point.style.top = `${mouseY}px`;
-        
+
         // Hide if over text input/textarea
         const target = e.target;
         if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
@@ -40,19 +47,19 @@ function initCustomCursor() {
             cursor.style.opacity = '1';
         }
     });
-    
+
     // Lerp for the ring
     function animateRing() {
         ringX += (mouseX - ringX) * 0.15;
         ringY += (mouseY - ringY) * 0.15;
-        
+
         ring.style.left = `${ringX}px`;
         ring.style.top = `${ringY}px`;
-        
+
         requestAnimationFrame(animateRing);
     }
     animateRing();
-    
+
     // Hover states
     const interactive = document.querySelectorAll('a, button, .magnetic, .card');
     interactive.forEach(el => {
@@ -69,7 +76,7 @@ function initCustomCursor() {
             ring.style.height = '28px';
         });
     });
-    
+
     // Click effect
     document.addEventListener('mousedown', () => {
         point.style.transform = 'translate(-50%, -50%) scale(0.5)';
@@ -88,7 +95,7 @@ class ScrambleText {
         this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         this.update = this.update.bind(this);
     }
-    
+
     scramble(text) {
         const oldText = this.el.innerText;
         const length = Math.max(oldText.length, text.length);
@@ -106,7 +113,7 @@ class ScrambleText {
         this.update();
         return promise;
     }
-    
+
     update() {
         let output = '';
         let complete = 0;
@@ -138,23 +145,26 @@ class ScrambleText {
 function initScrambleText() {
     const el = document.getElementById('scramble-headline');
     if (!el) return;
-    
+
     const phrases = [
-        "Tu negocio, online en tiempo récord.",
-        "De la idea al producto en semanas, no meses.",
-        "Tecnología que trabaja mientras vos dormís."
+        "Del problema al producto.",
+        "Convertimos ideas en productos.",
+        "El producto que imaginás, construido a tu medida.",
+        "Build, ship, iterate. Sin excusas.",
+        "Construimos productos. No páginas bonitas.",
+        "De la servilleta al producto en semanas."
     ];
-    
+
     const fx = new ScrambleText(el);
     let counter = 0;
-    
+
     const next = () => {
         fx.scramble(phrases[counter]).then(() => {
             setTimeout(next, 4500);
         });
         counter = (counter + 1) % phrases.length;
     };
-    
+
     next();
 }
 
@@ -165,12 +175,12 @@ function initScrollReveal() {
     const observerOptions = {
         threshold: 0.15
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
-                
+
                 // Handle staggered children
                 const staggered = el.querySelectorAll('.card, .stack-list span, .form-group, .metric');
                 if (staggered.length > 0) {
@@ -179,17 +189,17 @@ function initScrollReveal() {
                         child.classList.add('reveal-active');
                     });
                 }
-                
+
                 el.classList.add('reveal-active');
                 el.style.opacity = '1';
                 el.style.transform = 'translateY(0)';
                 el.style.transition = 'opacity 280ms cubic-bezier(0.16, 1, 0.3, 1), transform 280ms cubic-bezier(0.16, 1, 0.3, 1)';
-                
+
                 observer.unobserve(el);
             }
         });
     }, observerOptions);
-    
+
     document.querySelectorAll('.reveal').forEach(el => {
         observer.observe(el);
     });
@@ -200,23 +210,23 @@ function initScrollReveal() {
  */
 function initMagneticButtons() {
     if (window.matchMedia("(hover: none)").matches) return;
-    
+
     const buttons = document.querySelectorAll('.magnetic');
-    
+
     buttons.forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
+
             btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
         });
-        
+
         btn.addEventListener('mouseleave', () => {
             btn.style.transform = 'translate(0, 0)';
             btn.style.transition = 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1)';
         });
-        
+
         btn.addEventListener('mouseenter', () => {
             btn.style.transition = 'none';
         });
@@ -228,13 +238,13 @@ function initMagneticButtons() {
  */
 function initParallaxEffect() {
     if (window.matchMedia("(max-width: 768px)").matches) return;
-    
+
     const grid = document.querySelector('.hero-grid');
     const headline = document.getElementById('scramble-headline');
-    
+
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        
+
         requestAnimationFrame(() => {
             if (grid) grid.style.transform = `translateY(${scrolled * 0.2}px)`;
             if (headline) headline.style.transform = `translateY(${scrolled * 0.05}px)`;
@@ -257,7 +267,7 @@ function initCounters() {
             }
         });
     }, { threshold: 0.5 });
-    
+
     document.querySelectorAll('.metric-value').forEach(el => observer.observe(el));
 }
 
@@ -297,22 +307,22 @@ function initContactForm() {
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     if (!form) return;
-    
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerText;
-        
+
         // State: Loading
         submitBtn.disabled = true;
         submitBtn.innerText = 'Enviando...';
         status.className = 'form-status';
         status.innerText = '';
-        
+
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        
+
         try {
             const response = await fetch('/api/contact', {
                 method: 'POST',
@@ -321,9 +331,9 @@ function initContactForm() {
                 },
                 body: JSON.stringify(data)
             });
-            
+
             const result = await response.json();
-            
+
             if (response.ok && result.success) {
                 status.classList.add('success');
                 status.innerText = '¡Mensaje recibido!';
@@ -350,5 +360,30 @@ function initBadges() {
         if (badge.innerText.toLowerCase().includes('live')) {
             badge.classList.add('live');
         }
+    });
+}
+
+/**
+ * Mobile Menu Logic
+ */
+function initMobileMenu() {
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links a');
+
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('open');
+        navLinks.classList.toggle('open');
+        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            toggle.classList.remove('open');
+            navLinks.classList.remove('open');
+            document.body.style.overflow = '';
+        });
     });
 }
