@@ -72,7 +72,7 @@
 
 ## Component Plan
 
-- [ ] **UI-PLAN-1.1 — Design Token System (completar)**
+- [x] **UI-PLAN-1.1 — Design Token System (completar)**
   - **Prioridad**: P0 — base de todo lo demás
   - **Acción**: Mover todos los valores hardcodeados a tokens en `:root`
   - **Tokens a agregar**:
@@ -92,7 +92,7 @@
   - **Iconos necesarios**: check, arrow-right, whatsapp, close, plus/minus (FAQ), external-link
   - **Accesibilidad**: `aria-hidden="true"` en decorativos, `aria-label` en funcionales
 
-- [ ] **UI-PLAN-1.3 — Button Component (mejorar)**
+- [x] **UI-PLAN-1.3 — Button Component (mejorar)**
   - **Atomic Level**: Atom
   - **Variantes actuales**: `.btn` (primary rojo), `.btn.magnetic` (con efecto hover)
   - **Variantes faltantes**:
@@ -102,14 +102,14 @@
   - **Estados faltantes**: loading (spinner), disabled (opacity + pointer-events)
   - **Accesibilidad**: `aria-busy="true"` en loading, `aria-disabled` en disabled
 
-- [ ] **UI-PLAN-1.4 — Form Feedback (Toast)**
+- [x] **UI-PLAN-1.4 — Form Feedback (Toast)**
   - **Atomic Level**: Molecule
   - **Problema actual**: `#form-status` es un div con clase `.success`/`.error` — no reutilizable
   - **Propuesta**: componente `.alert` con variantes `success`, `error`, `warning`, `info`
   - **Estados**: aparece con transición, desaparece después de N segundos (opcional)
   - **Accesibilidad**: `role="alert"` + `aria-live="polite"` para screen readers
 
-- [ ] **UI-PLAN-1.5 — Card Variants**
+- [x] **UI-PLAN-1.5 — Card Variants**
   - **Atomic Level**: Molecule
   - **Variantes a estandarizar**:
     - `card--service`: sin header especial, solo h3 + p
@@ -117,13 +117,13 @@
     - `card--testimonial`: layout editorial (cite | quote)
   - **Consistencia**: `card--project` y `card--service` usan el mismo wrapper pero diferente inner markup — documentar la diferencia
 
-- [ ] **UI-PLAN-1.6 — Responsive Nav (mejorar)**
+- [x] **UI-PLAN-1.6 — Responsive Nav (mejorar)**
   - **Problema**: nav height `120px` en mobile es demasiado alto
   - **Propuesta**: `--nav-height-mobile: 64px` con logo reducido a `72px` en mobile
   - **Accesibilidad**: focus trap en mobile menu abierto, `aria-expanded` en toggle (ya existe), `Escape` para cerrar
   - **Adicional**: `aria-label="Navegación principal"` en `<nav>`
 
-- [ ] **UI-PLAN-1.7 — Scramble Headline: Accesibilidad**
+- [x] **UI-PLAN-1.7 — Scramble Headline: Accesibilidad**
   - **Problema**: El efecto scramble inyecta `<span class="scramble">` con caracteres aleatorios — un screen reader los lee todos
   - **Solución**: Agregar `aria-label` fijo al H1 con el texto final, y `aria-hidden` al contenido del scramble
   - **Implementación**:
@@ -142,7 +142,7 @@
 
 ## Component Items
 
-- [ ] **UI-ITEM-1.1 — Completar tokens en `:root`**
+- [x] **UI-ITEM-1.1 — Completar tokens en `:root`**
   - **Archivo**: `public/css/style.css`
   - **Acción**: Agregar los 14 tokens faltantes listados en UI-PLAN-1.1
   - **Tests**: Visual — verificar que nada cambia visualmente al reemplazar valores hardcodeados
@@ -153,12 +153,12 @@
   - **Uso en HTML**: `<svg aria-hidden="true"><use href="/img/icons.svg#check"></svg>`
   - **Reemplazar**: SVG inline del WhatsApp float por referencia al sprite
 
-- [ ] **UI-ITEM-1.3 — Estados de Button**
+- [x] **UI-ITEM-1.3 — Estados de Button**
   - **Archivo**: `public/css/style.css` + `public/js/main.js`
   - **CSS**: Agregar `.btn[disabled]` y `.btn--loading` con spinner CSS
   - **JS**: En `initContactForm`, agregar `aria-busy="true"` al btn durante submit
 
-- [ ] **UI-ITEM-1.4 — Alert component (reemplaza form-status)**
+- [x] **UI-ITEM-1.4 — Alert component (reemplaza form-status)**
   - **Archivo**: `public/css/style.css`
   - **CSS**:
     ```css
@@ -168,19 +168,19 @@
     ```
   - **HTML**: Agregar `role="alert"` al `#form-status`
 
-- [ ] **UI-ITEM-1.5 — Nav mobile: reducir altura**
+- [x] **UI-ITEM-1.5 — Nav mobile: reducir altura**
   - **Archivo**: `public/css/style.css`
   - **Cambio**: En `@media (max-width: 768px)`, `nav { height: 64px; }` + logo `48px`
   - **Adicional**: `aria-label="Navegación principal"` en `<nav id="header-nav">`
 
-- [ ] **UI-ITEM-1.6 — Scramble: aria-label fijo**
+- [x] **UI-ITEM-1.6 — Scramble: aria-label fijo**
   - **Archivo**: `public/js/main.js`
   - **Cambio**: En `next()`, antes de `fx.scramble()`:
     ```js
     el.setAttribute('aria-label', phrases[counter]);
     ```
 
-- [ ] **UI-ITEM-1.7 — FAQ: Escape key para cerrar**
+- [x] **UI-ITEM-1.7 — FAQ: Escape key para cerrar**
   - **Archivo**: `public/js/main.js`
   - **Cambio**: En `initFaq()`, agregar listener:
     ```js

@@ -1,4 +1,5 @@
 :root {
+    /* Colors */
     --bg: #f5f5f5;
     --surface: #ffffff;
     --border: #e0e0e0;
@@ -6,8 +7,38 @@
     --text: #0a0a0a;
     --muted: #888888;
     --red: #f45151;
+    --red-hover: #d93e3e;
 
+    /* Typography */
+    --font-family-base: "Segoe UI", system-ui, -apple-system, sans-serif;
+    --line-height-tight: 1.2;
+    --line-height-base: 1.6;
+    --line-height-relaxed: 1.7;
+
+    /* Spacing (base 4px) */
+    --sp-2: 0.5rem;
+    --sp-3: 0.75rem;
+    --sp-4: 1rem;
+    --sp-5: 1.25rem;
+    --sp-6: 1.5rem;
+    --sp-8: 2rem;
+    --sp-10: 2.5rem;
+    --sp-12: 3rem;
+    --sp-16: 4rem;
+    --sp-25: 6.25rem;
+
+    /* Layout */
+    --nav-height: 120px;
+    --nav-height-mobile: 64px;
+    --section-padding: 100px;
     --container-width: 1100px;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(10,10,10,0.08);
+    --shadow-md: 0 4px 16px rgba(10,10,10,0.14);
+    --shadow-red: 0 4px 16px rgba(244,81,81,0.3);
+    --shadow-red-lg: 0 6px 24px rgba(244,81,81,0.45);
+
     --transition-base: 280ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -20,13 +51,13 @@
 
 html {
     scroll-behavior: smooth;
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-family: var(--font-family-base);
     color: var(--text);
     background-color: var(--bg);
 }
 
 body {
-    line-height: 1.6;
+    line-height: var(--line-height-base);
     overflow-x: hidden;
 }
 
@@ -41,7 +72,7 @@ h1,
 h2,
 h3 {
     font-weight: 700;
-    line-height: 1.2;
+    line-height: var(--line-height-tight);
 }
 
 .section-title {
@@ -86,7 +117,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 120px;
+    height: var(--nav-height);
     display: flex;
     align-items: center;
     z-index: 1000;
@@ -137,7 +168,7 @@ nav .logo {
 
 /* Section Common */
 section {
-    padding: 100px 0;
+    padding: var(--section-padding) 0;
 }
 
 /* Hero */
@@ -220,7 +251,69 @@ section {
 }
 
 .btn:hover {
-    background: #d93e3e;
+    background: var(--red-hover);
+}
+
+/* Button variants */
+.btn--secondary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 600;
+    border: 1.5px solid var(--red);
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.btn--secondary:hover {
+    background: var(--red);
+    color: #ffffff;
+}
+
+.btn--ghost {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: color 200ms;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.btn--ghost:hover {
+    color: var(--red);
+    text-decoration-color: var(--red);
+}
+
+/* Button states */
+.btn[disabled],
+.btn--loading {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.btn--loading::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: btn-spin 0.6s linear infinite;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+@keyframes btn-spin {
+    to { transform: rotate(360deg); }
 }
 
 /* Grid Layouts */
@@ -400,12 +493,32 @@ section {
     font-size: 0.9rem;
 }
 
-.form-status.success {
-    color: #16a34a;
+/* Alert component */
+.alert {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    border-left: 3px solid;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 200ms;
 }
 
-.form-status.error {
+.alert:not(:empty) {
+    opacity: 1;
+}
+
+.form-status.success,
+.alert--success {
+    color: #16a34a;
+    border-color: #16a34a;
+    background: #f0fdf4;
+}
+
+.form-status.error,
+.alert--error {
     color: #dc2626;
+    border-color: #dc2626;
+    background: #fef2f2;
 }
 
 /* Footer */
@@ -479,7 +592,7 @@ footer {
     color: var(--muted);
     margin-bottom: 1rem;
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: var(--line-height-relaxed);
 }
 
 .about-stats {
@@ -535,7 +648,7 @@ footer {
 .step p {
     font-size: 0.85rem;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: var(--line-height-base);
 }
 
 /* Responsive nuevas secciones */
@@ -555,6 +668,10 @@ footer {
         font-size: 1rem;
         z-index: 1001;
         position: relative;
+    }
+
+    .logo img {
+        height: 72px;
     }
 
     .nav-links {
@@ -777,7 +894,7 @@ footer {
 
 .testimonial blockquote {
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: var(--line-height-relaxed);
     color: var(--text);
     font-style: normal;
 }
@@ -838,7 +955,7 @@ footer {
 .faq-answer p {
     color: var(--muted);
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: var(--line-height-relaxed);
 }
 
 /* WhatsApp floating button */
@@ -855,15 +972,15 @@ footer {
     padding: 0.75rem 1.25rem;
     font-size: 0.9rem;
     font-weight: 600;
-    box-shadow: 0 4px 16px rgba(244, 81, 81, 0.3);
+    box-shadow: var(--shadow-red);
     z-index: 998;
     transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .whatsapp-float:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(244, 81, 81, 0.45);
-    background: #d93e3e;
+    box-shadow: var(--shadow-red-lg);
+    background: var(--red-hover);
 }
 
 @media (max-width: 768px) {

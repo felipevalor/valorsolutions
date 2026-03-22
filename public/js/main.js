@@ -318,6 +318,8 @@ function initContactForm() {
 
         // State: Loading
         submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.classList.add('btn--loading');
         submitBtn.innerText = 'Enviando...';
         status.className = 'form-status';
         status.innerText = '';
@@ -348,6 +350,8 @@ function initContactForm() {
             status.innerText = `Error: ${err.message}. Intentá de nuevo.`;
         } finally {
             submitBtn.disabled = false;
+            submitBtn.removeAttribute('aria-busy');
+            submitBtn.classList.remove('btn--loading');
             submitBtn.innerText = originalText;
         }
     });
@@ -413,17 +417,45 @@ function initMobileMenu() {
 
     if (!toggle) return;
 
+    const closeMenu = () => {
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+    };
+
     toggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.contains('open');
         toggle.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(!isOpen));
         navLinks.classList.toggle('open');
-        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        document.body.style.overflow = !isOpen ? 'hidden' : '';
     });
 
     links.forEach(link => {
-        link.addEventListener('click', () => {
-            toggle.classList.remove('open');
-            navLinks.classList.remove('open');
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Escape key closes menu
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+            closeMenu();
+            toggle.focus();
+        }
+    });
+
+    // Focus trap when menu is open
+    navLinks.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab' || !navLinks.classList.contains('open')) return;
+        const focusable = [...navLinks.querySelectorAll('a')];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
     });
 }
