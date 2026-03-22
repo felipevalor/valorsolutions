@@ -18,12 +18,12 @@
 
     <nav id="header-nav" aria-label="Navegación principal">
         <div class="container">
-            <a href="#" class="logo" style="display: flex; align-items: center;">
+            <a href="#" class="logo">
                 <img src="img/Valor Solutions-negra.png" alt="Valor Solutions"
-                    style="height: 120px; width: auto;">
+                    style="height: 48px; width: auto;">
             </a>
 
-            <button class="nav-toggle" aria-label="Menu">
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -34,7 +34,7 @@
                 <a href="#sobre-mi">Nosotros</a>
                 <a href="#proceso">Proceso</a>
                 <a href="#proyectos">Proyectos</a>
-                <a href="#contacto">Contacto</a>
+                <a href="#contacto" class="nav-cta">Hablemos →</a>
             </div>
         </div>
     </nav>
@@ -43,8 +43,13 @@
         <section id="hero">
             <div class="hero-grid"></div>
             <div class="container reveal">
+                <p class="hero-eyebrow">Agencia de producto · Rosario, Argentina</p>
                 <h1 id="scramble-headline">Del problema al producto.</h1>
                 <p class="subtitle">Automatizamos lo que hoy te come tiempo. Sitios, sistemas y procesos que trabajan solos — para que vos te enfoques en lo que importa.</p>
+                <div class="hero-actions">
+                    <a href="#contacto" class="btn magnetic">Contanos tu proyecto</a>
+                    <a href="#proyectos" class="btn--ghost">Ver proyectos →</a>
+                </div>
                 <div class="hero-metrics">
                     <div class="metric">
                         <span class="metric-value" data-target="5">0</span>
@@ -61,8 +66,29 @@
                         <span class="metric-label">y te respondemos</span>
                     </div>
                 </div>
-                <a href="#contacto" class="btn magnetic">Contanos tu proyecto</a>
             </div>
+
+            <!-- Ticker strip -->
+            <div class="hero-ticker" aria-hidden="true">
+                <div class="hero-ticker-track">
+                    <span>Desarrollo Web</span><span class="ticker-sep">·</span>
+                    <span>Automatización</span><span class="ticker-sep">·</span>
+                    <span>Consultoría Tech</span><span class="ticker-sep">·</span>
+                    <span>Producto Digital</span><span class="ticker-sep">·</span>
+                    <span>Sistemas a Medida</span><span class="ticker-sep">·</span>
+                    <span>Desarrollo Web</span><span class="ticker-sep">·</span>
+                    <span>Automatización</span><span class="ticker-sep">·</span>
+                    <span>Consultoría Tech</span><span class="ticker-sep">·</span>
+                    <span>Producto Digital</span><span class="ticker-sep">·</span>
+                    <span>Sistemas a Medida</span><span class="ticker-sep">·</span>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <a href="#servicios" class="hero-scroll" aria-label="Ir a servicios">
+                <span>Scroll</span>
+                <div class="hero-scroll-arrow"></div>
+            </a>
         </section>
 
         <section id="servicios">
