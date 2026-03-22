@@ -5,6 +5,7 @@
     --accent: #0a0a0a;
     --text: #0a0a0a;
     --muted: #888888;
+    --red: #f45151;
 
     --container-width: 1100px;
     --transition-base: 280ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -113,10 +114,9 @@ nav .logo {
 }
 
 .logo img {
-    height: 48px;
+    height: 80px;
     width: auto;
     display: block;
-    mix-blend-mode: multiply;
 }
 
 .nav-links {
@@ -132,7 +132,7 @@ nav .logo {
 }
 
 .nav-links a:hover {
-    color: var(--accent);
+    color: var(--red);
 }
 
 /* Section Common */
@@ -210,8 +210,8 @@ section {
 .btn {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: #0a0a0a;
-    color: #f5f5f5;
+    background: var(--red);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     border: none;
@@ -220,7 +220,7 @@ section {
 }
 
 .btn:hover {
-    background: #333333;
+    background: #d93e3e;
 }
 
 /* Grid Layouts */
@@ -298,7 +298,7 @@ section {
 }
 
 .badge.live {
-    color: var(--accent);
+    color: var(--red);
 }
 
 .stack-badges {
@@ -342,8 +342,8 @@ section {
 }
 
 .project-link:hover {
-    border-color: var(--accent);
-    color: var(--text);
+    border-color: var(--red);
+    color: var(--red);
 }
 
 
@@ -522,7 +522,7 @@ footer {
 
 .step-number {
     font-size: 0.75rem;
-    color: var(--accent);
+    color: var(--red);
     font-weight: 700;
     letter-spacing: 0.1em;
 }
@@ -730,7 +730,7 @@ footer {
 /* Project result line */
 .project-result {
     font-size: 0.85rem;
-    color: var(--accent);
+    color: var(--red);
     font-weight: 600;
     margin-top: 0.75rem;
     padding-top: 0.75rem;
@@ -821,7 +821,7 @@ footer {
 
 .faq-question[aria-expanded="true"] .faq-icon {
     transform: rotate(45deg);
-    color: var(--accent);
+    color: var(--red);
 }
 
 .faq-answer {
@@ -847,20 +847,21 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--accent);
-    color: var(--bg);
+    background: var(--red);
+    color: #ffffff;
     text-decoration: none;
     padding: 0.75rem 1.25rem;
     font-size: 0.9rem;
     font-weight: 600;
-    box-shadow: 0 4px 16px rgba(10, 10, 10, 0.2);
+    box-shadow: 0 4px 16px rgba(244, 81, 81, 0.3);
     z-index: 998;
     transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .whatsapp-float:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(10, 10, 10, 0.3);
+    box-shadow: 0 6px 24px rgba(244, 81, 81, 0.45);
+    background: #d93e3e;
 }
 
 @media (max-width: 768px) {
