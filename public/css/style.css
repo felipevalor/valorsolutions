@@ -146,10 +146,11 @@ nav .logo {
     align-items: center;
 }
 
-.logo img {
-    height: 36px;
+.logo-svg {
+    height: 32px;
     width: auto;
     display: block;
+    overflow: visible;
 }
 
 .nav-links {
@@ -822,8 +823,8 @@ footer {
         position: relative;
     }
 
-    .logo img {
-        height: 30px;
+    .logo-svg {
+        height: 26px;
     }
 
     .nav-links {

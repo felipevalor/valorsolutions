@@ -7,6 +7,9 @@
     <title>Valor Solutions | Portfolio & Infrastructure</title>
     <meta name="description"
         content="Automatizamos lo que hoy te come tiempo. Sitios, sistemas y procesos que trabajan solos — para que vos te enfoques en lo que importa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -18,9 +21,23 @@
 
     <nav id="header-nav" aria-label="Navegación principal">
         <div class="container">
-            <a href="#" class="logo">
-                <img src="img/logo.svg" alt="Valor Solutions"
-                    style="height: 36px; width: auto;">
+            <a href="#" class="logo" aria-label="Valor Solutions">
+                <svg class="logo-svg" viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <!-- Pill bar: rect rotado 31° = forma "/" upper-right a lower-left -->
+                    <rect x="-4.25" y="-21" width="8.5" height="42" rx="4.25"
+                          fill="#f45151"
+                          transform="translate(22, 25) rotate(31)"/>
+                    <!-- Círculo grande (upper-left) -->
+                    <circle cx="8" cy="10" r="8" fill="#f45151"/>
+                    <!-- Círculo menor (diagonal abajo-derecha del grande) -->
+                    <circle cx="15" cy="21" r="6.5" fill="#f45151"/>
+                    <!-- Wordmark Nunito 800 -->
+                    <text x="40" y="30"
+                          font-family="'Nunito', 'Segoe UI', system-ui, sans-serif"
+                          font-weight="800"
+                          font-size="23"
+                          fill="#0a0a0a">Valor Solutions</text>
+                </svg>
             </a>
 
             <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
