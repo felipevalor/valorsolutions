@@ -160,6 +160,7 @@ function initScrambleText() {
     let counter = 0;
 
     const next = () => {
+        el.setAttribute('aria-label', phrases[counter]);
         fx.scramble(phrases[counter]).then(() => {
             setTimeout(next, 4500);
         });
@@ -369,6 +370,18 @@ function initBadges() {
  */
 function initFaq() {
     const questions = document.querySelectorAll('.faq-question');
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            questions.forEach(q => {
+                q.setAttribute('aria-expanded', 'false');
+                const ans = q.nextElementSibling;
+                ans.classList.remove('open');
+                ans.setAttribute('hidden', '');
+            });
+        }
+    });
+
     questions.forEach(btn => {
         btn.addEventListener('click', () => {
             const expanded = btn.getAttribute('aria-expanded') === 'true';
