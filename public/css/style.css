@@ -723,8 +723,10 @@ footer {
 }
 
 /* Ocultar toggle en desktop */
-.nav-toggle {
-    display: none;
+@media (min-width: 769px) {
+    .nav-toggle {
+        display: none;
+    }
 }
 
 /* Project result line */
