@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavScroll();
     initBadges();
     initMobileMenu();
+    initFaq();
 });
 
 /**
@@ -360,6 +361,32 @@ function initBadges() {
         if (badge.innerText.toLowerCase().includes('live')) {
             badge.classList.add('live');
         }
+    });
+}
+
+/**
+ * FAQ Accordion
+ */
+function initFaq() {
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            // Close all
+            questions.forEach(q => {
+                q.setAttribute('aria-expanded', 'false');
+                const ans = q.nextElementSibling;
+                ans.classList.remove('open');
+                ans.setAttribute('hidden', '');
+            });
+            // Open clicked (unless it was already open)
+            if (!expanded) {
+                btn.setAttribute('aria-expanded', 'true');
+                const answer = btn.nextElementSibling;
+                answer.classList.add('open');
+                answer.removeAttribute('hidden');
+            }
+        });
     });
 }
 
