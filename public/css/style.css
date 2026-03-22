@@ -28,8 +28,8 @@
     --sp-25: 6.25rem;
 
     /* Layout */
-    --nav-height: 72px;
-    --nav-height-mobile: 56px;
+    --nav-height: 88px;
+    --nav-height-mobile: 64px;
     --section-padding: 100px;
     --container-width: 1100px;
 
@@ -147,7 +147,7 @@ nav .logo {
 }
 
 .logo img {
-    height: 48px;
+    height: 100px;
     width: auto;
     display: block;
 }
@@ -823,7 +823,7 @@ footer {
     }
 
     .logo img {
-        height: 40px;
+        height: 68px;
     }
 
     .nav-links {
