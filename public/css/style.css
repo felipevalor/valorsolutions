@@ -575,6 +575,10 @@ section {
     filter: grayscale(100%);
 }
 
+.project-client-logo img.logo-kettu {
+    height: 64px;
+}
+
 .project-client-logo img.logo-psico {
     mix-blend-mode: multiply;
     filter: none;
