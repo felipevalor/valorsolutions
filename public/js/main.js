@@ -88,83 +88,34 @@ function initCustomCursor() {
 }
 
 /**
- * Scramble Text Effect
+ * Headline Fade Transition
  */
-class ScrambleText {
-    constructor(el) {
-        this.el = el;
-        this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        this.update = this.update.bind(this);
-    }
-
-    scramble(text) {
-        const oldText = this.el.innerText;
-        const length = Math.max(oldText.length, text.length);
-        const promise = new Promise((resolve) => this.resolve = resolve);
-        this.queue = [];
-        for (let i = 0; i < length; i++) {
-            const from = oldText[i] || '';
-            const to = text[i] || '';
-            const start = Math.floor(Math.random() * 120);
-            const end = start + Math.floor(Math.random() * 80);
-            this.queue.push({ from, to, start, end });
-        }
-        cancelAnimationFrame(this.frameRequest);
-        this.frame = 0;
-        this.update();
-        return promise;
-    }
-
-    update() {
-        let output = '';
-        let complete = 0;
-        for (let i = 0, n = this.queue.length; i < n; i++) {
-            let { from, to, start, end, char } = this.queue[i];
-            if (this.frame >= end) {
-                complete++;
-                output += to;
-            } else if (this.frame >= start) {
-                if (!char || Math.random() < 0.12) {
-                    char = this.chars[Math.floor(Math.random() * this.chars.length)];
-                    this.queue[i].char = char;
-                }
-                output += `<span class="scramble">${char}</span>`;
-            } else {
-                output += from;
-            }
-        }
-        this.el.innerHTML = output;
-        if (complete === this.queue.length) {
-            this.resolve();
-        } else {
-            this.frameRequest = requestAnimationFrame(this.update);
-            this.frame++;
-        }
-    }
-}
-
 function initScrambleText() {
     const el = document.getElementById('scramble-headline');
     if (!el) return;
 
     const phrases = [
-        "Del problema al producto.",
+        "Tecnología que tiene sentido para tu negocio.",
         "Convertimos ideas en productos.",
-        "El producto que imaginás, construido a tu medida.",
         "Build, ship, iterate. Sin excusas.",
         "Construimos productos. No páginas bonitas.",
         "De la servilleta al producto en semanas."
     ];
 
-    const fx = new ScrambleText(el);
     let counter = 0;
 
+    el.style.transition = 'opacity 0.5s ease';
+
     const next = () => {
-        el.setAttribute('aria-label', phrases[counter]);
-        fx.scramble(phrases[counter]).then(() => {
+        el.style.opacity = '0';
+
+        setTimeout(() => {
+            el.textContent = phrases[counter];
+            el.setAttribute('aria-label', phrases[counter]);
+            counter = (counter + 1) % phrases.length;
+            el.style.opacity = '1';
             setTimeout(next, 4500);
-        });
-        counter = (counter + 1) % phrases.length;
+        }, 500);
     };
 
     next();
@@ -208,32 +159,9 @@ function initScrollReveal() {
 }
 
 /**
- * Magnetic Buttons
+ * Magnetic Buttons (disabled)
  */
-function initMagneticButtons() {
-    if (window.matchMedia("(hover: none)").matches) return;
-
-    const buttons = document.querySelectorAll('.magnetic');
-
-    buttons.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-            btn.style.transition = 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1)';
-        });
-
-        btn.addEventListener('mouseenter', () => {
-            btn.style.transition = 'none';
-        });
-    });
-}
+function initMagneticButtons() {}
 
 /**
  * Parallax Effect

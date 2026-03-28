@@ -583,7 +583,9 @@ section {
     mix-blend-mode: normal;
     filter: none;
     opacity: 1;
-    height: 56px;
+    height: 26px;
+    width: auto;
+    max-width: 100%;
 }
 
 .project-link {
