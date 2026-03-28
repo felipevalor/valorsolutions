@@ -147,7 +147,7 @@ nav .logo {
 }
 
 .logo-img {
-    height: 100px;
+    height: 40px;
     width: auto;
     display: block;
 }
@@ -575,6 +575,13 @@ section {
     filter: grayscale(100%);
 }
 
+.project-client-logo img.logo-psico {
+    mix-blend-mode: multiply;
+    filter: none;
+    opacity: 1;
+    height: 32px;
+}
+
 .project-link {
     display: inline-block;
     margin-top: 1.25rem;
@@ -823,7 +830,7 @@ footer {
     }
 
     .logo-img {
-        height: 68px;
+        height: 28px;
     }
 
     .nav-links {
@@ -1174,4 +1181,10 @@ footer {
         bottom: 1.5rem;
         right: 1.5rem;
     }
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
 }
