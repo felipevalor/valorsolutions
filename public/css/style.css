@@ -580,10 +580,10 @@ section {
 }
 
 .project-client-logo img.logo-psico {
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
     filter: none;
     opacity: 1;
-    height: 32px;
+    height: 56px;
 }
 
 .project-link {
