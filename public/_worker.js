@@ -66,14 +66,15 @@ export default {
                 // 3. Send email notification via Resend
                 if (env.RESEND_API_KEY) {
                     try {
-                        await fetch('https://api.resend.com/emails', {
+                        console.log('Intentando enviar email con Resend...');
+                        const resendRes = await fetch('https://api.resend.com/emails', {
                             method: 'POST',
                             headers: {
                                 'Authorization': `Bearer ${env.RESEND_API_KEY}`,
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                from: 'Valor Solutions <notifications@resend.dev>',
+                                from: 'Valor Solutions <onboarding@resend.dev>',
                                 to: 'felipevalor7@gmail.com',
                                 subject: `Nuevo Lead: ${nombre}`,
                                 html: `
@@ -91,9 +92,18 @@ export default {
                                 `,
                             }),
                         });
+
+                        const resendData = await resendRes.json();
+                        if (resendRes.ok) {
+                            console.log('Email enviado exitosamente:', resendData.id);
+                        } else {
+                            console.error('Error de Resend API:', resendData);
+                        }
                     } catch (e) {
-                        console.error('Error enviando email:', e.message);
+                        console.error('Error de red enviando email:', e.message);
                     }
+                } else {
+                    console.warn('RESEND_API_KEY no encontrada en el entorno.');
                 }
 
                 // 4. Success Response
