@@ -63,7 +63,40 @@ export default {
                     throw new Error('Database insertion failed');
                 }
 
-                // 3. Success Response
+                // 3. Send email notification via Resend
+                if (env.RESEND_API_KEY) {
+                    try {
+                        await fetch('https://api.resend.com/emails', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                from: 'Valor Solutions <notifications@resend.dev>',
+                                to: 'felipevalor7@gmail.com',
+                                subject: `Nuevo Lead: ${nombre}`,
+                                html: `
+                                    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
+                                        <h2 style="color: #0a0a0a; border-bottom: 2px solid #f45151; padding-bottom: 10px;">Nuevo Lead - Valor Solutions</h2>
+                                        <p style="font-size: 16px; margin: 20px 0;">Has recibido un nuevo contacto desde el sitio web.</p>
+                                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px;">
+                                            <p><strong>Nombre:</strong> ${nombre}</p>
+                                            <p><strong>Email:</strong> <a href="mailto:${email}" style="color: #f45151;">${email}</a></p>
+                                            <p><strong>Mensaje:</strong></p>
+                                            <p style="white-space: pre-wrap; font-style: italic;">${mensaje}</p>
+                                        </div>
+                                        <p style="font-size: 12px; color: #888; margin-top: 30px; text-align: center;">Este correo fue enviado automáticamente desde el Cloudflare Worker.</p>
+                                    </div>
+                                `,
+                            }),
+                        });
+                    } catch (e) {
+                        console.error('Error enviando email:', e.message);
+                    }
+                }
+
+                // 4. Success Response
                 return new Response(JSON.stringify({ success: true }), { 
                     status: 200, 
                     headers: corsHeaders 
