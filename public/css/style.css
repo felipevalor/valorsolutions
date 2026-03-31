@@ -38,6 +38,9 @@
     --shadow-md: 0 4px 16px rgba(10,10,10,0.14);
     --shadow-red: 0 4px 16px rgba(244,81,81,0.3);
     --shadow-red-lg: 0 6px 24px rgba(244,81,81,0.45);
+    --whatsapp: #25d366;
+    --shadow-whatsapp: 0 4px 16px rgba(37, 211, 102, 0.3);
+    --shadow-whatsapp-lg: 0 6px 24px rgba(37, 211, 102, 0.45);
 
     --transition-base: 280ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -586,6 +589,14 @@ section {
     height: 26px;
     width: auto;
     max-width: 100%;
+}
+
+.project-client-logo img.logo-analia {
+    mix-blend-mode: normal;
+    filter: none;
+    opacity: 1;
+    height: 44px;
+    width: auto;
 }
 
 .project-link {
@@ -1154,22 +1165,22 @@ footer {
     right: 2rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: var(--red);
+    justify-content: center;
+    background: var(--whatsapp);
     color: #ffffff;
     text-decoration: none;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    box-shadow: var(--shadow-red);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-whatsapp);
     z-index: 998;
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
 }
 
 .whatsapp-float:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-red-lg);
-    background: var(--red-hover);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-whatsapp-lg);
+    background-color: #20ba5a;
 }
 
 @media (max-width: 768px) {
@@ -1178,12 +1189,9 @@ footer {
         gap: 0.75rem;
     }
 
-    .whatsapp-float span {
-        display: none;
-    }
-
     .whatsapp-float {
-        padding: 0.85rem;
+        width: 56px;
+        height: 56px;
         bottom: 1.5rem;
         right: 1.5rem;
     }
