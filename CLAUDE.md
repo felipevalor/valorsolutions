@@ -30,7 +30,14 @@ public/
     valor-solutions-logo/   — valorsolutions-negra.svg, logo-v.svg (favicon)
     gebyanos-logo/          — Gebyanos logo.png
     logo-kettu/             — logo-kettu.svg
+    logo-whatsapp/          — whatsapp-3.svg (oficial)
+    logos-ana-velazco/      — logo-analia-velazco.svg
     turnos-psico-logos/     — logo-turnos-psico-negro.svg, logo-turnos-psico-blanco.svg
+worker/
+  index.js            — backend (Cloudflare Worker) que maneja /api/contact
+migrations/
+  001_init.sql        — esquema inicial de D1 (tabla leads)
+wrangler.toml         — configuración de Cloudflare (D1, Pages, Workers)
 ```
 
 ## Convenciones
@@ -47,6 +54,7 @@ public/
 | Turnos Psico | https://turnospsi-frontend.pages.dev/ | Workers, D1 |
 | Barbería Gebyanos | https://barberia-d8q.pages.dev/ | Workers, WhatsApp API |
 | Kettu Café | https://kettu-cafe.pages.dev/ | Pages, Workers, D1 |
+| Analía Velazco | https://cosmetologa-analia-velazco.pages.dev/ | Workers, D1, Admin Panel |
 
 ## Decisiones de diseño
 
