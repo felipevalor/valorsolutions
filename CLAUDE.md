@@ -30,7 +30,7 @@ public/
     valor-solutions-logo/   — valorsolutions-negra.svg, logo-v.svg (favicon)
     gebyanos-logo/          — Gebyanos logo.png
     logo-kettu/             — logo-kettu.svg
-    logo-whatsapp/          — whatsapp-3.svg (oficial)
+    logos-redes/            — facebook-2020-2-1.svg, instagram-2016-5.svg, linkedin-icon-2.svg, whatsapp-3.svg (oficial), x-2.svg
     logos-ana-velazco/      — logo-analia-velazco.svg
     turnos-psico-logos/     — logo-turnos-psico-negro.svg, logo-turnos-psico-blanco.svg
 worker/
@@ -44,8 +44,12 @@ wrangler.toml         — configuración de Cloudflare (D1, Pages, Workers)
 
 - Siempre verificar localmente (`python3 -m http.server 8080 --directory public`) antes de deployar
 - Hard refresh con Cmd+Shift+R para ver cambios en SVG/JS cacheados
-- No hay build step — los archivos en `public/` se sirven directo
-- Los logos están en subcarpetas dentro de `public/img/` — actualizar los `src` en HTML si se mueven archivos
+- [x] Fix WhatsApp floating button path in `index.html`
+- [x] Add social media links to the footer in `index.html`
+- [x] Style the new social media section in `style.css`
+- [x] Update `CLAUDE.md` documentation
+- [/] Verify functionality and layout
+- [ ] Commit, Push, and Deploy
 
 ## Proyectos en el portfolio
 
